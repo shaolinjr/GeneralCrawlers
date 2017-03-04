@@ -3,40 +3,42 @@
 # MONGO_PORT = 27017
 # MONGO_DBNAME =  'admin'
 DOMAIN = {
-    'user': {
+    'attractions':{
         'schema': {
-            'firstname': {
-                'type': 'string'
-            },
-            'lastname': {
-                'type': 'string'
-            },
-            'username': {
+            'attraction_name': {
                 'type': 'string',
-                 'unique': True
             },
-            'password': {
+            'park_name': {
+                'type':'string'
+            },
+            'attraction_type':{
                 'type': 'string'
-            },
-            'phone': {
-                'type': 'string',
-                'unique':True
-            },
-            'additional_lookup': {
-                'url': 'regex("[\w]+")',
-                'field': 'username',
             }
+            #attraction_image
+        },
+        'additional_lookup': {
+            'url': 'regex("[\w]+")',
+            'field': 'park_name'
         }
     },
-    'item': {
-        'schema': {
-            'name': {
+    'dinings':{
+        'schema':{
+            'dining_name':{
+                'type':'string'
+            },
+            'park_name':{
                 'type': 'string'
             },
-            'username': {
-                'type': 'string'
+            'dining_image':{
+                'type':'media'
             }
+        },
+
+        'additional_lookup': {
+            'url': 'regex("[\w]+")',
+            'field': 'park_name'
         }
+
     }
 
 }
@@ -44,9 +46,12 @@ DOMAIN = {
 # Enable reads (GET), inserts (POST) and DELETE for resources/collections
 # (if you omit this line, the API will default to ['GET'] and provide
 # read-only access to the endpoint).
-RESOURCE_METHODS = ['GET', 'POST', 'DELETE', 'PATCH']
+RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
 
 # Enable reads (GET), edits (PATCH), replacements (PUT) and deletes of
 # individual items  (defaults to read-only item access).
-ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']
+# ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']
 
+# PAGINATION = False
+# PAGINATION_LIMIT = 199
+# PAGINATION_DEFAULT = 199
