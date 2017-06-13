@@ -5,7 +5,7 @@ from urllib.request import urlopen
 from urllib.error import HTTPError
 import os
 from os.path import join
-from clint.textui import progress, puts, colored
+from clint.textui import  puts, colored
 
 
 
@@ -50,6 +50,7 @@ def get_images (urls,xpath):
 
         page = requests.get(url)
         HTML_tree = html.fromstring(page.content)
+        # print(HTML_tree)
         images += HTML_tree.xpath(xpath)
     print("URL: %s Found: %d images" % (url, len(images)))
     return images #store in respective list (e.g: sea_images = get_images(...)
@@ -102,11 +103,11 @@ def update_mongo (collection, park_name, images_list, images_path):
 
 # SeaWorld
 sea_images = get_images(sea_urls,'//*[@id="aspnetForm"]/div[4]/div[1]/div[2]/table/tbody/tr/td[1]/img')
-update_mongo(dinings,"sea-world",sea_images,"images/dinings/sea-world")
+# update_mongo(dinings,"sea-world",sea_images,"images/dinings/sea-world")
 
 # Busch Gardens
 busch_images = get_images(busch_urls, '//*[@id="dining"]/article/img')
-update_mongo(dinings, "busch-gardens",busch_images, "images/dinings/busch-gardens")
+# update_mongo(dinings, "busch-gardens",busch_images, "images/dinings/busch-gardens")
 
 #TODO Magic Kingdom
 
